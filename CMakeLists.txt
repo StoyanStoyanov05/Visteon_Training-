@@ -4,14 +4,32 @@ set(CMAKE_CXX_STANDRAT 14)
 set(CMAKE_CXX_STANDRAT_REQUIRED True)
 add_executable(GLTFLoader
     src/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glad/src/glad.c
 )
+
+    if(WIN32)
+    target_include_directories(GLTFLoader PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glad/include
+        )
+
+endif()
+
+ target_include_directories(GLTFLoader PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/tinyGLTF
+        )
+
+    target_compile_definitions(GLTFLoader PRIVATE
+        -DTINYGLTF_IMPLEMENTATION
+        -DSTB_IMAGE_IMPLEMENTATION
+        -DSTB_IMAGE_WRITE_IMPLEMENTATION
+   )
+    
+    
 
 set(GLFW_BUILD_WAYLAND OFF)
 
 add_subdirectory(thirdparty/glfw/)
-target_include_directories(GLTFLoader PRIVATE
-# 	
-)
+
 target_link_libraries(GLTFLoader PRIVATE
     glfw
 )

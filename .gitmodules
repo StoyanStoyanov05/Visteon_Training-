@@ -7,3 +7,6 @@
 [submodule "thirdparty/glew"]
 	path = thirdparty/glew
 	url = https://github.com/nigels-com/glew.git
+[submodule "thirdparty/tinyGLTF"]
+	path = thirdparty/tinyGLTF
+	url = https://github.com/syoyo/tinygltf.git
